@@ -11,7 +11,7 @@ Questa applicazione è stata sviluppata per il corso JavaScript advanced di star
 Si tratta di un textbox in stile Google
 ![application-screenshot](/assets/img/application-screenshot1.png?raw=true "Optional Title")
 
-il quale una volta inserito il nome di una città e premuto il pulsate Search, fa partire un fetch 
+il quale una volta inserito il nome di una città e premuto il pulsante Search, fa partire un fetch 
 agli API pubblici di [Teleport.org](https://teleport.org/) (CTRL o CMD + tasto sinistro del mouse 
 per aprire in una nuova scheda) presenti sul portale developer dell'organizzazione (https://developers.teleport.org/api/).
 
