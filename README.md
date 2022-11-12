@@ -1,6 +1,10 @@
 # Global Welfare Tracker
 ## An application that let you know *what is the life like* in a certain city
 
+### Link all'applicazione
+[Global Welfare Tracker](https://global-welfare-tracker.netlify.app/) (CTRL o CMD + tasto sinistro del mouse 
+per aprire in una nuova scheda)
+
 ### Descrizione progetto
 Questa applicazione è stata sviluppata per il corso JavaScript advanced di start2impact University.
 
