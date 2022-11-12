@@ -1,0 +1,23 @@
+//styling pulsante bootstrap
+.btn {
+  margin: 30px auto;
+  overflow: hidden;
+  border-width: 0;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px $tertiary-color;
+  background-color: $secondary-color;
+  color: $tertiary-color;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: $primary-color;
+  color: $tertiary-color;
+}
+
+.btn span {
+  display: block;
+  padding: 5px 5px;
+  font-size: 1.1rem;
+}
