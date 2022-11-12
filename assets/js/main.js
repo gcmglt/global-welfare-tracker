@@ -4,20 +4,12 @@
 
 let city; //per fetch
 let searchButton = document.querySelector(".btn");
-let cityNameInput = document.querySelector(
-  ".city-name-input"
-);
-let cityDescription = document.querySelector(
-  ".city-description"
-);
+let cityNameInput = document.querySelector(".city-name-input");
+let cityDescription = document.querySelector(".city-description");
 let title = document.querySelector(".title");
 let guideline = document.querySelector(".guideline");
-let overallScore = document.querySelector(
-  ".overall-score-container"
-);
-let scoreContainer = document.querySelector(
-  ".score-container"
-);
+let overallScore = document.querySelector(".overall-score-container");
+let scoreContainer = document.querySelector(".score-container");
 let errorWarning = document.querySelector(".error-warning");
 
 // ********************************
@@ -55,9 +47,7 @@ async function teleportGetDatas() {
     scoresData.categories.forEach((x) => {
       scoreContainer.insertAdjacentHTML(
         "afterbegin",
-        `<h2><strong>${
-          x.name
-        }</strong>:<br> ${x.score_out_of_10.toFixed(
+        `<h2><strong>${x.name}</strong>:<br> ${x.score_out_of_10.toFixed(
           1
         )} / 10</h2><br>`
       );
@@ -104,16 +94,13 @@ searchButton.addEventListener("click", (onScreenButton) => {
 });
 
 // tasto invio per teleportGetDatas
-cityNameInput.addEventListener(
-  "keydown",
-  function (enterKey) {
-    if (enterKey.key === "Enter") {
-      enterKey.preventDefault();
-      city = exactName(cityNameInput.value);
-      teleportGetDatas();
-    }
+cityNameInput.addEventListener("keydown", function (enterKey) {
+  if (enterKey.key === "Enter") {
+    enterKey.preventDefault();
+    city = exactName(cityNameInput.value);
+    teleportGetDatas();
   }
-);
+});
 
 // tolto messaggio errore dopo averlo ricevuto
 // al focus sulla textbox
@@ -126,25 +113,17 @@ cityNameInput.addEventListener("focus", () => {
 // *************************************
 
 searchButton.addEventListener("click", (e) => {
-  document
-    .querySelector("#card1-style")
-    .classList.add("card-style");
+  document.querySelector("#card1-style").classList.add("card-style");
 });
 
 searchButton.addEventListener("click", (e) => {
-  document
-    .querySelector("#card2-style")
-    .classList.add("card-style");
+  document.querySelector("#card2-style").classList.add("card-style");
 });
 
 searchButton.addEventListener("click", (e) => {
-  document
-    .querySelector("#card1-style")
-    .classList.remove("card-transparent");
+  document.querySelector("#card1-style").classList.remove("card-transparent");
 });
 
 searchButton.addEventListener("click", (e) => {
-  document
-    .querySelector("#card2-style")
-    .classList.remove("card-transparent");
+  document.querySelector("#card2-style").classList.remove("card-transparent");
 });
