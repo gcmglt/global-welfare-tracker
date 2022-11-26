@@ -4,65 +4,55 @@
     <meta charset="UTF-8" />
     <meta
       http-equiv="X-UA-Compatible"
-      content="IE=edge"
-    />
+      content="IE=edge" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+      content="width=device-width, initial-scale=1.0" />
     <title>Global Welfare Tracker</title>
     <link
       rel="icon"
       type="image/png"
-      href="./assets/img/favicon.png"
-    />
+      href="./assets/img/favicon.png" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous" />
     <link
       rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
+      href="https://fonts.googleapis.com" />
     <link
       rel="preconnect"
       href="https://fonts.gstatic.com"
-      crossorigin
-    />
+      crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link
       rel="stylesheet"
-      href="./assets/css/main.css"
-    />
+      href="./assets/css/main.css" />
   </head>
   <body class="container">
     <!-- ---------------------------
     ------ CITY INPUT SECTION ------
     ---------------------------- -->
     <header>
-      <section class="textbox-container">
+      <section>
         <div class="search-wrapper">
-          <h1 class="title">
+          <h1 class="search-wrapper__title">
             <em>What is life like in...</em>
           </h1>
           <div>
             <input
               type="text"
-              class="city-name-input"
+              class="city-input__name"
               autocomplete="off"
               value=""
-              placeholder="Insert the city name..."
-            />
+              placeholder="Insert the city name..." />
           </div>
           <button
             class="btn"
-            type="button"
-          >
+            type="button">
             <span>Search</span>
           </button>
         </div>
@@ -73,32 +63,26 @@
     ---------------------------- -->
     <main>
       <section class="result-container">
-        <div class="error-warning"></div>
-        <div class="guideline text-center">
+        <div class="result-container__error"></div>
+        <div class="result-container__guideline text-center">
           <p>
             <em
-              >Search for your dream city, and get
-              informations about quality of life.</em
+              >Search for your dream city, and get informations about quality of
+              life.</em
             >
           </p>
         </div>
         <div class="card-wrapper">
           <div
             class="card-transparent"
-            id="card1-style"
-          >
-            <div
-              class="overall-score-container data-wrapper"
-            ></div>
-            <div
-              class="city-description data-wrapper"
-            ></div>
+            id="card-score__overall">
+            <div class="score-container__overall data-wrapper"></div>
+            <div class="city-input__description data-wrapper"></div>
           </div>
           <div
             class="categories-wrapper card card-transparent"
-            id="card2-style"
-          >
-            <div class="score-container data-wrapper"></div>
+            id="card-score__categories">
+            <div class="score-container__categories data-wrapper"></div>
           </div>
         </div>
       </section>
@@ -106,11 +90,9 @@
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
     <script
       type="module"
-      src="./assets/js/main.js"
-    ></script>
+      src="./assets/js/main.js"></script>
   </body>
 </html>

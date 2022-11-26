@@ -1,4 +1,4 @@
-//styling pulsante bootstrap
+//styling pulsante
 .btn {
   margin: 30px auto;
   overflow: hidden;
@@ -16,7 +16,7 @@
   color: $tertiary-color;
 }
 
-.btn span {
+.btn > span {
   display: block;
   padding: 5px 5px;
   font-size: 1.1rem;

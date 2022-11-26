@@ -1,129 +1,118 @@
-// ******************************
-// ****** LET DECLARATIONS ******
-// ******************************
-
+// **************************
+// ****** DECLARATIONS ******
+// **************************
+const searchButton = document.querySelector(".btn");
+const cityInputName = document.querySelector(".city-input__name");
+const cityInputDescription = document.querySelector(".city-input__description");
+const searchWrapperTitle = document.querySelector(".search-wrapper__title");
+const resultContainerGuideline = document.querySelector(
+  ".result-container__guideline"
+);
+const resultContainerError = document.querySelector(".result-container__error");
+const scoreContainerOverall = document.querySelector(
+  ".score-container__overall"
+);
+const scoreContainerCategories = document.querySelector(
+  ".score-container__categories "
+);
+const cardScoreOverall = document.querySelector("#card-score__overall");
+const cardScoreCategories = document.querySelector("#card-score__categories");
 let city; //per fetch
-let searchButton = document.querySelector(".btn");
-let cityNameInput = document.querySelector(".city-name-input");
-let cityDescription = document.querySelector(".city-description");
-let title = document.querySelector(".title");
-let guideline = document.querySelector(".guideline");
-let overallScore = document.querySelector(".overall-score-container");
-let scoreContainer = document.querySelector(".score-container");
-let errorWarning = document.querySelector(".error-warning");
 
 // ********************************
 // ****** FETCH TELEPORT API ******
 // ********************************
-
-async function teleportGetDatas() {
+const getDatas = async () => {
   //Fetch API
-  let scoresRes = await fetch(
+  const getScores = await fetch(
     `https://api.teleport.org/api/urban_areas/slug:${city}/scores/`
   );
-  let scoresData = await scoresRes.json();
+  const scoresData = await getScores.json();
 
-  let imageRes = await fetch(
+  const getImage = await fetch(
     `https://api.teleport.org/api/urban_areas/slug:${city}/images/`
   );
-  let imageData = await imageRes.json();
+  const imageData = await getImage.json();
 
   // ******************************
   // ****** DOM MANIPULATION ******
   // ******************************
-  console.log(scoresRes.status);
-  if ((scoresRes.status != 400, 404, 500)) {
-    let capsCity = city.toUpperCase().replaceAll("-", " ");
+  if (getScores.status != 404) {
+    // styling score container
+    cardScoreOverall.classList.remove("card-transparent");
+    cardScoreOverall.classList.add("card-visible");
+    cardScoreCategories.classList.remove("card-transparent");
+    cardScoreCategories.classList.add("card-visible");
 
-    cityNameInput.value = "";
-    title.value = "";
-    guideline.innerHTML = "";
-    title.innerHTML = `What is life like in ${capsCity}`;
-    overallScore.innerHTML = `<h1><strong>Overall score:</strong><br> ${scoresData.teleport_city_score.toFixed()} / 100</h1>`;
-    cityDescription.innerHTML = "";
-    cityDescription.innerHTML = `<h3><strong>Quality of life in ${capsCity}</strong>: </h3><p>${scoresData.summary}</p>`;
+    const setCapsName = city.toUpperCase().replaceAll("-", " ");
 
-    scoreContainer.innerHTML = "";
+    cityInputName.value = "";
+    searchWrapperTitle.value = "";
+    resultContainerGuideline.innerHTML = "";
+    searchWrapperTitle.innerHTML = `What is life like in ${setCapsName}`;
+    scoreContainerOverall.innerHTML = `<h1><strong>Overall score:</strong><br> ${scoresData.teleport_city_score.toFixed()} / 100</h1>`;
+    cityInputDescription.innerHTML = "";
+    cityInputDescription.innerHTML = `<h3><strong>Quality of life in ${setCapsName}</strong>: </h3><p>${scoresData.summary}</p>`;
+
+    scoreContainerCategories.innerHTML = "";
     scoresData.categories.forEach((x) => {
-      scoreContainer.insertAdjacentHTML(
+      scoreContainerCategories.insertAdjacentHTML(
         "afterbegin",
-        `<h2><strong>${x.name}</strong>:<br> ${x.score_out_of_10.toFixed(
+        `<h3><strong>${x.name}</strong>:<br> ${x.score_out_of_10.toFixed(
           1
-        )} / 10</h2><br>`
+        )} / 10</h3><br>`
       );
     });
 
-    let cityImage = document.querySelector("header");
-    cityImage.style.backgroundImage = `url(${imageData.photos[0].image.web})`;
+    const setCityImage = document.querySelector("header");
+    setCityImage.style.backgroundImage = `url(${imageData.photos[0].image.web})`;
   } else {
-    getWarning(
-      "<br>City not found. Check if there's a typo. <br> Remember that you have to use cities names in english. <br> If none of these problems are yours, maybe that city is not in our database."
+    errorHandler(
+      `<br>City not found. Check if there's a typo. <br> Remember that you have to use cities names in english. <br> If none of these problems are yours, maybe that city is not in our database.`
     );
   }
-}
+};
 
-// ***********************************************
-// ****** ERROR PREVENT AND ERROR FUNCTIONS ******
-// ***********************************************
-
-function exactName(input) {
+// ****************************
+// ****** ERROR HANDLING ******
+// ****************************
+const properNameHandler = (input) => {
   input = input.toLowerCase();
   input = input.trim();
   input = input.replaceAll(" ", "-");
   return input;
-}
+};
 
-function getWarning(warningMessage) {
-  errorWarning.innerHTML = `<p>${warningMessage}</p>`;
+const errorHandler = (warningMessage) => {
+  resultContainerError.innerHTML = `<p>${warningMessage}</p>`;
   return warningMessage;
-}
+};
 
-// ******************************
-// ****** EVENT LISTENERS  ******
-// ******************************
+cityInputName.addEventListener("keydown", () => {
+  resultContainerError.innerHTML = "";
+});
 
-// search button per teleportGetDatas
+cityInputName.addEventListener("focus", () => {
+  resultContainerError.innerHTML = "";
+});
+
+// *******************************
+// ****** SEARCH FUNCTIONS  ******
+// *******************************
 searchButton.addEventListener("click", (onScreenButton) => {
   onScreenButton.preventDefault();
-  if (cityNameInput.value == "") {
-    getWarning("You must input a city name!");
+  if (cityInputName.value == "") {
+    errorHandler("You must input a city name!");
   } else {
-    city = exactName(cityNameInput.value);
-    teleportGetDatas();
+    city = properNameHandler(cityInputName.value);
+    getDatas();
   }
 });
 
-// tasto invio per teleportGetDatas
-cityNameInput.addEventListener("keydown", function (enterKey) {
+cityInputName.addEventListener("keydown", function (enterKey) {
   if (enterKey.key === "Enter") {
     enterKey.preventDefault();
-    city = exactName(cityNameInput.value);
-    teleportGetDatas();
+    city = properNameHandler(cityInputName.value);
+    getDatas();
   }
-});
-
-// tolto messaggio errore dopo averlo ricevuto
-// al focus sulla textbox
-cityNameInput.addEventListener("focus", () => {
-  errorWarning.innerHTML = "";
-});
-
-// *************************************
-// ****** STYLING EVENT LISTENERS ******
-// *************************************
-
-searchButton.addEventListener("click", (e) => {
-  document.querySelector("#card1-style").classList.add("card-style");
-});
-
-searchButton.addEventListener("click", (e) => {
-  document.querySelector("#card2-style").classList.add("card-style");
-});
-
-searchButton.addEventListener("click", (e) => {
-  document.querySelector("#card1-style").classList.remove("card-transparent");
-});
-
-searchButton.addEventListener("click", (e) => {
-  document.querySelector("#card2-style").classList.remove("card-transparent");
 });
